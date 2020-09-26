@@ -68,7 +68,11 @@ class Kakesystem {
     }
 
     public ArrayList<Kunde> getSortertKundeListe() {
-        ArrayList<Kunde> sortertKundeListe = Collections.sort(kunder);
+        ArrayList<Kunde> sortertKundeListe = (ArrayList<Kunde>)kunder.clone();
+
+        Collections.sort(sortertKundeListe);
+
+        return sortertKundeListe;
     }
 
     public long getLengsteLeveringsTid() {

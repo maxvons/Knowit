@@ -1,2 +1,0 @@
-# Knowit
-Knowit oppgave

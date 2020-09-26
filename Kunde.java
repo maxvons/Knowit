@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Kunde implements Comparable {
+public class Kunde implements Comparable<Kunde> {
     private int id;
     private String navn;
     private ArrayList<BestiltKake> bestilteKaker = new ArrayList<>();
