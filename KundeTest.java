@@ -12,4 +12,14 @@ public class KundeTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void testNavn() {
+        Kunde nyKunde = new Kunde(0, "Sigmund");
+
+        String expected = "Sigmund";
+        String actual = nyKunde.getNavn();
+        
+        assertEquals(expected, actual);
+    }
 }

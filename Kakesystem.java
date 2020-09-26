@@ -15,8 +15,13 @@ class Kakesystem {
 
     public void bestillKake(int kundeId, String typeKake, LocalDateTime bestillingsTidspunkt) {
         Kunde aktuellKunde = getKundeMedId(kundeId);
+
+        if (aktuellKunde == null) {
+            System.out.println("Kunde finnes ikke");
+            return;
+        }
         
-        Kake nyBestiltKake = new BestiltKake(aktuellKunde, typeKake, 
+        BestiltKake nyBestiltKake = new BestiltKake(aktuellKunde, typeKake, 
                                                 bestillingsTidspunkt);
 
         aktuellKunde.leggTilBestiltKake(nyBestiltKake);
@@ -25,9 +30,14 @@ class Kakesystem {
 
     public void leverKake(int kundeId, String typeKake, LocalDateTime tidspunktLevert) {
         Kunde aktuellKunde = getKundeMedId(kundeId);
-        Kake aktuellKake = getTypeKake(kundeId, typeKake);
 
-        Kake nyLevertKake = new LevertKake(getKundeMedId(kundeId), typeKake, aktuellKake.getTidspunktBestilt(), tidspunktLevert);
+        if (aktuellKunde == null) {
+            System.out.println("Kunde finnes ikke");
+            return;
+        }
+
+        BestiltKake aktuellKake = getTypeKake(kundeId, typeKake);
+        LevertKake nyLevertKake = new LevertKake(getKundeMedId(kundeId), typeKake, aktuellKake.getTidspunktBestilt(), tidspunktLevert);
 
         aktuellKunde.leggTilLevertKake(nyLevertKake);
     }
@@ -44,11 +54,11 @@ class Kakesystem {
         return aktuellKunde;
     }
 
-    public Kake getTypeKake(int kundeId, String typeKake) {
+    public BestiltKake getTypeKake(int kundeId, String typeKake) {
         Kunde aktuellKunde = getKundeMedId(kundeId);
-        Kake aktuellKake = null;
+        BestiltKake aktuellKake = null;
 
-        for (Kake k : aktuellKunde.getBestilteKaker()) {
+        for (BestiltKake k : aktuellKunde.getBestilteKaker()) {
             if (k.getTypeKake().equals(typeKake)) {
                 aktuellKake = k;
             }
